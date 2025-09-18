@@ -108,10 +108,18 @@ return {
 				-- The following code creates a keymap to toggle inlay hints in your
 				-- code, if the language server you are using supports them
 				if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+					vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
 					map("<leader>th", function()
 						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
 					end, "[T]oggle Inlay [H]ints")
 				end
+			end,
+		})
+
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			pattern = "*.rs",
+			callback = function()
+				vim.lsp.buf.format({ async = false })
 			end,
 		})
 
@@ -130,7 +138,19 @@ return {
 		-- - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
 		-- - settings (table): Override the default settings passed when initializing the server.
 		local servers = {
-			rust_analyzer = {},
+			rust_analyzer = {
+				settings = {
+					["rust-analyzer"] = {
+						inlayHints = {
+							enable = true,
+							typeHints = { enable = true },
+							parameterHints = { enable = true },
+							chainingHints = { enable = true },
+							maxLength = 25,
+						},
+					},
+				},
+			},
 			ts_ls = {},
 			ruff = {},
 			pylsp = {
