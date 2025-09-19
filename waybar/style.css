@@ -36,7 +36,6 @@ window#waybar {
 }
 
 #clock,
-#battery,
 #backlight,
 #network,
 #pulseaudio,
@@ -53,11 +52,11 @@ window#waybar {
     font-size: 15px;
 }
 
-
-#battery {
+#upower {
     font-weight: bolder;
     font-size: 15px;
     margin-right: 25px;
+    padding-bottom: 2px;
 }
 
 @keyframes blink {
@@ -67,14 +66,6 @@ window#waybar {
     }
 }
 
-#battery.critical:not(.charging) {
-    color: #bf5673;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
 #backlight {
     color: #90b1b1;
 }

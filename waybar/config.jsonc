@@ -3,7 +3,7 @@
     "position": "top", 
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": ["clock"],
-    "modules-right": ["network", "pulseaudio", "battery"],
+    "modules-right": ["pulseaudio", "network", "upower"],
     "hyprland/window": {
 	"format": "{initialTitle}"
     },
@@ -22,21 +22,12 @@
 	     "format": "{:%m/%d - %I:%M}",
 	     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
      },
-     "battery": {
-        "states": {
-            "warning": 30,
-            "critical": 15
-	},
-	"format": "<span size='10000' foreground='#EBDBB2'>{icon}</span> {capacity}%",
-	"format-warning": "<span size='10000' foreground='#EBDBB2'>{icon}</span> {capacity}%",
-	"format-critical": "<span size='10000' foreground='#EBDBB2'>{icon}</span> {capacity}%",
-	"format-charging": "<span size='10000' foreground='#B1E3AD'> </span>{capacity}%",
-	"format-plugged": "<span size='10000' foreground='#B1E3AD'> </span>{capacity}%",
-	"format-alt": "<span size='10000' foreground='#B1E3AD'>{icon}</span> {time}",
-	"format-full": "<span size='10000' foreground='#B1E3AD'> </span>{capacity}%",
-	"format-icons": ["", "", "", "", ""],
-	"tooltip-format": "{time}"
-     },
+    "upower": {
+	"format": " <span size='9000' foreground='#EBDBB2'>{percentage}</span>",
+	"hide-if-empty": true,
+        "tooltip": true,
+	"icon-size": 18
+    },
 	"network": {
         "format-wifi": "<span size='9000' foreground='#EBDBB2'> </span>",
         "format-linked": "{ifname} (No IP) ",
