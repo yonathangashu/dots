@@ -25,8 +25,14 @@
     "upower": {
 	"format": " <span size='9000' foreground='#EBDBB2'>{percentage}</span>",
 	"hide-if-empty": true,
-        "tooltip": true,
-	"icon-size": 18
+        "tooltip-format": "Battery: ({time} remaining)",
+        "format-icons": {
+            "charging": "",
+            "charged": "",
+            "default": "",
+            "low": "",
+            "percentage": 10
+        }
     },
 	"network": {
         "format-wifi": "<span size='9000' foreground='#EBDBB2'> </span>",
